@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-page{% endblock %}
+
+{% block content %}
+<div id="page-content">
+
+{% with blocks=page.content %}
+    {% for block in blocks %}
+            <section class="block-{{ block.block_type }}">
+                {{ block }}
+            </section>
+    {% endfor %}
+{% endwith %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+
+<section id="content" class="container-fluid">
+    <div id="intro" class="row">
+        {{ page.intro|richtext }}
+    </div>
+    <div class="contact-container col-md-6">
+        <div id="contact-form">
+            <form action="{% pageurl page %}" method="POST">
+                {% csrf_token %}
+                {{ form.as_ul }}
+                <button id="submit-button" class="ghost-button-pink">
+                    <i class="fa fa-paper-plane"></i> Send
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="contact-container col-md-6">
+        <div id="contact-intro">
+            {{ page.paragraph|richtext }}
+        </div>
+    </div>
+
+</section>
+{% endblock %}

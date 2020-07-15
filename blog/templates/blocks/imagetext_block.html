@@ -1,0 +1,12 @@
+{% load wagtailimages_tags %}
+
+<div class="row">
+
+    <div class="col-md-6">
+           {% image self.left_column original class="img-column" %}
+      </div>
+      <div class="col-md-6">
+           {{ self.right_column }}
+     </div>
+
+</div>

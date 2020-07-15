@@ -1,0 +1,8 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<ul class="gallery-container">
+  {% for item in self %}
+    <li>{% image item.value height-600 %}</li>
+  {% endfor %}
+
+</ul>

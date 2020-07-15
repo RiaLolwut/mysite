@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-blogpage{% endblock %}
+
+{% block content %}
+<div id="blog-content">
+    <div class="post-meta right">
+      <ul>
+      <li><small><i class="fa fa-clock-o grey"></i> {{ page.first_published_at|date:"j F Y" }}  </small></li>
+      <li><small><i class="fa fa-folder grey"></i>
+      {% for category in page.categories.all %}
+      <a href="/blog/category/{{ category.slug }}">{{ category.name }}</a></small></li>
+      {% endfor %}
+      <li><small><i class="fa fa-pencil grey"></i> {{ page.content|wordcount }} words</small></li>
+      <li><small><i class="fa fa-comments grey"></i> <a class="scroll" href="/blog/{{ page.slug }}#disqus_thread"></a><a class="scroll" href="/blog/{{ page.slug }}#comments-section"> comments</a></small></li>
+    </ul>
+    </div>
+
+{% with blocks=page.content %}
+    {% for block in blocks %}
+            <section class="block-{{ block.block_type }}">
+                {{ block }}
+            </section>
+    {% endfor %}
+{% endwith %}
+
+</div>
+
+<div id="comments-section" class="anchor"></div>
+<div id="disqus_thread"></div>
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = 'https://riaparish.co.nz{{ request.path }}';  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = '{{ request.path }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://riaparish.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+{% endblock %}

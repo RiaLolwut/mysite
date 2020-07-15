@@ -1,0 +1,122 @@
+{% load static wagtailimages_tags %}
+{% image self.hero_image original as img_hero %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="shortcut icon" href="/media/images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/media/images/favicon.ico" type="image/x-icon">
+        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% with self.get_site.site_name as site_name %}{% if site_name %}- {{ site_name }}{% endif %}{% endwith %}{% endblock %}</title>
+        <meta name="description" content="{{ self.search_description }}" />
+        <meta property="og:site_name" content="Ria Parish" />
+        <meta property="og:locale" content="en_NZ" />
+        <meta property="og:title" content="{{ self.seo_title }}"/>
+        <meta property="og:type" content="{% if 'blog' in request.path %}article{% else %}website{% endif %}" />
+        <meta property="article:author" content="Ria Parish" />
+        <meta property="og:url" content="http://riaparish.co.nz{{ request.path }}" />
+        <meta property="og:image" content="http://riaparish.co.nz{{ img_hero.url }}" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@RiaLolwut" />
+        <meta name="twitter:title" content="{{ self.seo_title }}" />
+        <meta name="twitter:description" content="{{ self.search_description }}" />
+        <meta name="twitter:image" content="http://riaparish.co.nz{{ img_hero.url }}" />
+        <meta name="twitter:creator" content="@RiaLolwut" />
+        <meta name="twitter:domain" content="riaparish.co.nz">
+
+        {# Global stylesheets #}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/animate.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/fontawesome.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-grid-system.css' %}">
+
+        {% block extra_css %}
+            {# Override this in templates to add extra stylesheets #}
+        {% endblock %}
+        {% if not request.is_preview %}
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5Q23T96');</script>
+        <!-- End Google Tag Manager -->
+        {% endif %}
+    </head>
+    <body class="{% block body_class %}{% endblock %}">
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5Q23T96"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+        <header>
+              <section id="hero"{% if request.path != "/" %} style="min-height: 500px;"{% endif %}>
+                <div id="hero-bg"{% if request.path != "/" %} style="background: url('{{ img_hero.url }}') bottom center; background-size: cover; min-height: 500px;"{% endif %}></div>
+                <h1 class="animate__animated animate__rubberBand">{{ self.hero_heading }}</h1>
+                {% if request.path == "/" %}
+                {% image self.hero_image original id="lolimahero" class="img-responsive" %}
+                {% endif %}
+              </section> <!-- End #hero -->
+        </header>
+                    <nav>
+                      {% if request.path != "/" %}
+                      <div id="home-nav" class="float-left">
+                      <a href="/" alt="Home"><img class="pulse-this" title="Go Home" alt="logo" src="/media/images/logo.png"></a>
+                      </div>
+                      {% endif %}
+                      <ul id="mini-navbar">
+                        <li><a href="/" alt="Home"><img class="logo" alt="logo" src="/media/images/logo.png"></a></li>
+                        <li class="animate__animated animate__fadeIn"><a class="pink" href="/" alt="Home">RIA PARISH</a></li>
+                        <li><i class="fa fa-bars fa-3x hamburger"></i></li>
+                      </ul>
+                      <ul id="navbar" class="pink">
+                        <li class="float-left"><a href="/" alt="Home"><img alt="logo" src="/media/images/logo.png"></a></li>
+                        <li class="float-left animate__animated animate__bounceIn"><a class="pink" href="/" alt="Home">RIA PARISH</a></li>
+                        <li class="pulse-this float-right about-nav"><a href="/seo"><p><strong>Services</strong></p></a></li>
+                        <li class="float-right"><i class="fa fa-circle-o pink"></i></li>
+                        <li class="pulse-this float-right"><a href="/blog"><p><strong>Blog</strong></p></a></li>
+                        <li class="float-right"><i class="fa fa-circle-o pink"></i></li>
+                        <li class="pulse-this float-right blog-nav"><a href="/contact"><p><strong>Contact</strong></p></a></li>
+                      </ul>
+                      <div id="hamburger-menu" class="menu-displayed">
+                        <span><i class="fa fa-bars fa-4x hamburger"></i></span>
+                        <ul>
+                        <li class="pulse-this"><a href="/seo"><p><strong>Services</strong></p></a></li>
+                        <li><i class="fa fa-circle-o pink"></i></li>
+                        <li class="pulse-this"><a href="/blog"><p><strong>Blog</strong></p></a></li>
+                        <li ><i class="fa fa-circle-o pink"></i></li>
+                        <li class="pulse-this"><a href="/contact"><p><strong>Contact</strong></p></a></li>
+                        </ul>
+                      </div>
+                    </nav>
+
+        {% block content %}{% endblock %}
+
+        <section id="social">
+            <h2>What else is new?</h2>
+            <div class="social-links">
+                <a class="social-icon" href="https://www.linkedin.com/in/riaparish"><i class="fa fa-linkedin fa-5x social-icon pulse-this"></i></a>
+                <a class="social-icon" href="https://twitter.com/RiaLolwut"><i class="fa fa-twitter fa-5x social-icon pulse-this"></i></a>
+                <a class="social-icon" href="https://instagram.com/RiaLolwut"><i class="fa fa-instagram fa-5x social-icon pulse-this"></i></a>
+            </div>
+            <a href="#"><i class="fa fa-chevron-circle-up fa-5x pink scroll-up"></i></a>
+        </section> <!-- End #social -->
+
+        <footer>
+          <i class="fa fa-code fa-2x"></i> with <i class="fa fa-heart fa-2x"></i> by Ria. <br>
+          <small>© Copyright {% now "Y" %} <a href="/">Ria Parish - Digital Freelancer</a> - All Rights Reserved</small>
+        </footer>
+
+
+        {# Global javascript #}
+
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript" src="{% static 'js/verysadscripts.js' %}"></script>
+        <script id="dsq-count-scr" src="//riaparish.disqus.com/count.js" async></script>
+
+        {% block extra_js %}
+            {# Override this in templates to add extra javascript #}
+        {% endblock %}
+    </body>
+</html>

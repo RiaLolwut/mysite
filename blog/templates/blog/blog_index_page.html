@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags %}
+
+{% block body_class %}template-blogindexpage{% endblock %}
+{% routablepageurl page "category_view" page.hero_heading %}
+{% block content %}
+<section id="content">
+    <div id="intro" class="row">
+        {{ page.intro|richtext }}
+
+    </div>
+    <div id="mobile-blog-categories">
+      <p>Categories:
+        {% for category in categories.all %}
+        <a href="/blog/{{ category.slug }}">{{ category }}</a>{% if forloop.last %} {% else %}, {% endif %}
+        {% endfor %}</p>
+    </div>
+</section>
+<section id="blog-posts" class="container-fluid">
+{% for first in blogposts|slice:":1" %}
+{% with first=first.specific %}
+{% image first.hero_image height-600 as thumbnail %}
+  <div id="recent-blog" class="row-fluid clearfix">
+    <div id="recent-blog-feature" class="col-md-7" style="background: #d17580 url({{ thumbnail.url }}) center; background-size: cover;">
+        <div class="comment-count">
+            <span class="fa-stack fa-2x">
+                <i class="fa fa-comment fa-stack-2x"></i>
+                <i class="fa fa-stack-1x"><a href="{{ first.url }}#disqus_thread"></a></i>
+            </span>
+        </div>
+    </div>
+    <div id="recent-blog-feature-2" class="col-md-5">
+      <div id="latest-post">
+        <h2>Latest Post</h2>
+        <h3><a href="{{ first.url }}">{{ first.title }}</a></h3>
+        <p><i class="fa fa-clock-o grey"></i> {{ first.first_published_at|date:"j F Y" }}</p>
+        <p><i class="fa fa-folder"></i>
+        {% for category in first.categories.all %}
+        <a class="grey" href="/blog/category/{{ category.slug }}">{{ category.name }}</a>
+        {% endfor %}</p>
+        <p>{{ first.snippet }}</p>
+        <p class="center"><a class="ghost-button-white" href="{{ first.url }}">
+          <i class="fa fa-folder-open"></i> View</a>
+        </p>
+      </div>
+    </div>
+  </div>
+{% endwith %}
+{% endfor %}
+<!-- End #recent-blog -->
+
+    <div id="blog-content" class="row-fluid clearfix">
+      <div id="blog-sidebar" class="col-md-4">
+        <div id="blog-sidebar-content">
+          <h2>Categories</h2>
+          <ul>
+            {% for category in categories.all %}
+            <li class="pulse-this"><a href="/blog/category/{{ category.slug }}"><p>{{ category }}</p></a></li>
+            {% endfor %}
+          </ul>
+          <div class="pagination">
+                <span class="page-links clearfix">
+                      {% if blogposts.has_previous %}
+                      <p class="left"><a rel="prev" class="ghost-button-white" href="{% if blogposts.number == 2 %}./{% else %}?page={{ blogposts.previous_page_number }}{% endif %}"><i class="fa fa-chevron-left"></i> Previous</a></p>
+                      {% endif %}
+                      {% if blogposts.has_next %}
+                      <p class="right"><a rel="next" class="ghost-button-white" href="?page={{ blogposts.next_page_number }}">Next <i class="fa fa-chevron-right"></i></a></p>
+                      {% endif %}
+                </span>
+                <span class="page-links-xs clearfix">
+                      {% if blogposts.has_previous %}
+                      <p class="left"><a class="white" rel="prev" href="{% if blogposts.number == 2 %}./{% else %}?page={{ pagination.previous_page_number }}{% endif %}"><i class="fa fa-chevron-left fa-4x"></i></a></p>
+                      {% endif %}
+                      {% if blogposts.has_next %}
+                      <p class="right"><a class="white" rel="next" href="?page={{ blogposts.next_page_number }}"><i class="fa fa-chevron-right fa-4x"></i></a></p>
+                      {% endif %}
+                </span>
+                <span class="current">
+                      <p class="center">Page {{ blogposts.number }} of {{ pagination.num_pages }}</p>
+                </span>
+          </div>
+        </div>
+      </div>
+      <div id="blog-main" class="col-md-8">
+        {% for post in blogposts|slice:"1:" %}
+        {% with post=post.specific %}
+        <div class="blog-post">
+          <div class="blog-right col-md-6 col-md-push-6">
+            <div class="comment-count">
+              <span class="fa-stack fa-2x">
+              <i class="fa fa-comment fa-stack-2x"></i>
+              <i class="fa fa-stack-1x"><a href="{{ post.url }}#disqus_thread"></a></i>
+              </span>
+            </div>
+            {% image post.hero_image height-600 as thumbnail %}
+                <div class="blog-post-img" style="background: #d17580 url({{ thumbnail.url }}) center; background-size: cover;">
+                    <a href="{% pageurl post %}"><div class="blog-item-image-overlay"></div></a>
+                </div>
+          </div>
+    	  <div class="blog-left col-md-6 col-md-pull-6">
+    		<h3><a href="{% pageurl post %}">{{ post.title }}</a></h3>
+            <p>
+              <span class="blog-item-date"><i class="fa fa-clock-o grey"></i> {{ post.first_published_at|date:"j F Y" }}</span>
+              <span><i class="fa fa-folder"></i>
+                {% for category in post.categories.all %}
+                <a href="/blog/category/{{ category.slug }}">{{ category.name }}</a>
+                {% endfor %}</span>
+            </p>
+    		<p>{{ post.snippet }}</p>
+            <p class="center"><a class="ghost-button-pink" href="{% pageurl post %}"><i class="fa fa-folder-open"></i> View</a></p>
+    	  </div>
+      </div>
+      {% endwith %}
+      {% endfor %}
+      </div>
+    </div>
+    <!-- End of blog post forloop -->
+    <div class="mobile-pagination">
+            <span class="page-links clearfix">
+                  {% if blogposts.has_previous %}
+                  <p class="left"><a rel="prev" class="ghost-button-white" href="{% if blogposts.number == 2 %}./{% else %}?page={{ blogposts.previous_page_number }}{% endif %}"><i class="fa fa-chevron-left"></i> Previous</a></p>
+                  {% endif %}
+                  {% if blogposts.has_next %}
+                  <p class="right"><a rel="next" class="ghost-button-white" href="?page={{ blogposts.next_page_number }}">Next <i class="fa fa-chevron-right"></i></a></p>
+                  {% endif %}
+            </span>
+            <span class="page-links-xs clearfix">
+                  {% if blogposts.has_previous %}
+                  <p class="left"><a class="white" rel="prev" href="{% if blogposts.number == 2 %}./{% else %}?page={{ blogposts.previous_page_number }}{% endif %}"><i class="fa fa-chevron-left fa-4x"></i></a></p>
+                  {% endif %}
+                  {% if blogposts.has_next %}
+                  <p class="right"><a class="white" rel="next" href="?page={{ blogposts.next_page_number }}"><i class="fa fa-chevron-right fa-4x"></i></a></p>
+                  {% endif %}
+            </span>
+            <span class="current">
+                  <p class="center white">Page {{ blogposts.number }} of {{ pagination.num_pages }}</p>
+            </span>
+    </div>
+    </section>  <!-- End #blog-posts -->
+{% endblock %}

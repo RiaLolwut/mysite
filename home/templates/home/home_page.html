@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block content %}
+<section id="content">
+    <div id="intro" class="row">
+        {{ page.intro|richtext }}
+    </div>
+</section>
+<section id="featured" class="container-fluid">
+    {{ page.featured_section|richtext }}
+    <div class="row-fluid">
+    {% for post in page.featured_posts.all|slice:":4" %}
+    {% image post.featured_image height-600 as thumbnail %}
+        <a href="{{ post.featured_post.url }}">
+            <div class="col-md-3 featured-post" style="background: url('{{ thumbnail.url }}');">
+                <p><span class="featured-post-title">{{ post.featured_post.title }}</span></p>
+            </div>
+        </a>
+    {% endfor %}
+    </div>
+    <div class="row-fluid">
+    {% for post in page.featured_posts.all|slice:"4:6" %}
+    {% image post.featured_image height-600 as thumbnail %}
+        <a href="{{ post.featured_post.url }}">
+            <div class="col-md-4 featured-post{% if forloop.last %} col-md-push-4{% endif %}" style="background: url('{{ thumbnail.url }}');">
+                <p><span class="featured-post-title">{{ post.featured_post.title }}</span></p>
+            </div>
+        </a>
+
+    {% endfor %}
+        <a href="/blog">
+            <div class="col-md-4 col-md-pull-4 featured-post view-all">
+                <p><span class="featured-post-title"><i class="fa fa-folder-open"></i> View all</span></p>
+            </div>
+        </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
