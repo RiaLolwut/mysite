@@ -7,3 +7,5 @@ db.sqlite3
 /static
 .DS_Store
 /mysite/settings/dev.py
+/mysite/settings/production.py
+/mysite/settings/base.py
