@@ -55,6 +55,10 @@
     display: none;
   }
 
+  .blog-post .blog-left h3 {
+    font-size: 1.5em;
+  }
+
 }
 
 /* Small to Medium resolutions */
@@ -139,6 +143,10 @@
 
   #navbar {
     display: none;
+  }
+
+  #page-content .block-richtext_block, #page-content .block-two_columns {
+    padding: 0 10% 0 10%;
   }
 
   #content #intro {
@@ -306,7 +314,7 @@ body {
   width: 100%;
 }
 
-p, ul li {
+p, ul li, .text-center p {
   font-family: 'Montserrat', sans-serif;
   font-size: 20px;
 }
@@ -960,9 +968,12 @@ li .fa-heart {
 
 .template-blogpage #blog-content, #page-content {
   background-color: #ffffff;
-  padding: 60px 0 40px 0;
   position: relative;
   z-index: 997;
+}
+
+.template-blogpage #blog-content {
+    padding: 60px 0 40px 0;
 }
 
 .template-blogpage #hero h1 {

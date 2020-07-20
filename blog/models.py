@@ -56,7 +56,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
     def get_context(self, request):
         context = super().get_context(request)
         all_posts = self.get_children().live().order_by('-first_published_at')
-        pagination = Paginator(all_posts, 4)
+        pagination = Paginator(all_posts, 5)
         page = request.GET.get("page")
 
 
