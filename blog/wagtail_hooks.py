@@ -10,34 +10,27 @@ from wagtail.core import hooks
 def register_code_styling(features):
     """Add the <code> to the richtext editor and page."""
 
-    # Step 1
     feature_name = "code"
-    type_ = "CODE"
-    tag = "code"
+    type_ = "PRE"
+    tag = "pre"
 
-    # Step 2
     control = {
         "type": type_,
         "label": "</>",
         "description": "Code"
     }
 
-    # Step 3
     features.register_editor_plugin(
         "draftail", feature_name, draftail_features.InlineStyleFeature(control)
     )
 
-    # Step 4
     db_conversion = {
         "from_database_format": {tag: InlineStyleElementHandler(type_)},
         "to_database_format": {"style_map": {type_: {"element": tag}}}
     }
 
-    # Step 5
     features.register_converter_rule("contentstate", feature_name, db_conversion)
 
-    # Step 6. This is optional
-    # This will register this feature with all richtext editors by default
     features.default_features.append(feature_name)
 
 
