@@ -51,7 +51,7 @@
         <!-- End Google Tag Manager (noscript) -->
         <header>
               <section id="hero"{% if request.path != "/" %} style="min-height: 500px;"{% endif %}>
-                <div id="hero-bg"{% if request.path != "/" %} style="background: url('{{ img_hero.url }}') bottom center; background-size: cover; min-height: 500px;"{% endif %}></div>
+                <div id="hero-bg"{% if request.path != "/" %} style="background-image: url('{{ img_hero.url }}');"{% endif %}></div>
                 <h1 class="animate__animated animate__rubberBand">{{ self.hero_heading }}</h1>
                 {% if request.path == "/" %}
                 {% image self.hero_image original id="lolimahero" class="img-responsive" %}

@@ -100,7 +100,7 @@
           </div>
     	  <div class="blog-left col-md-6 col-md-pull-6">
     		<h3><a href="{% pageurl post %}">{{ post.title }}</a></h3>
-            <p>
+            <p class="blog-index-meta">
               <span class="blog-item-date"><i class="fa fa-clock-o grey"></i> {{ post.first_published_at|date:"j F Y" }}</span>
               <span><i class="fa fa-folder"></i>
                 {% for category in post.categories.all %}
