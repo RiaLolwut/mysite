@@ -67,6 +67,12 @@
     font-size: 1.5em;
   }
 
+.rich-text img {
+  display: block;
+  float: none;
+  margin: auto;
+}
+
   .contact-container #contact-form {
     padding: 24px;
   }
