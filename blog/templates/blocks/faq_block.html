@@ -1,0 +1,11 @@
+{% load wagtailcore_tags %}
+
+<div id="faq-container">
+  {% for item in self %}
+  <div class="tab">
+    <input type="checkbox" id="faq{{ forloop.counter }}">
+    <label class="faq-question" for="faq{{ forloop.counter }}">{{ item.value.question }}</label>
+    <div class="faq-answer">{{ item.value.answer }}</div>
+  </div>
+  {% endfor %}
+</div>

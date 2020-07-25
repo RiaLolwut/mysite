@@ -1,0 +1,6 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+  {% for item in self %}
+  <div class="floating-card-row {% if item.block_type == 'float_card_left' %} floating-card-row-left{% else %} floating-card-row-right{% endif %} clearfix">
+    <div class="floating-card{% if item.block_type == 'float_card_left' %} float-card-left{% else %} float-card-right{% endif %}">{{ item }}</div>
+  </div>
+  {% endfor %}

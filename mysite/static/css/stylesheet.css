@@ -31,7 +31,7 @@
 
   .hamburger {
     float: right;
-    padding: 10px;
+    padding: 0px;
     color: #000000;
 }
 
@@ -42,11 +42,19 @@
     max-width: 60px;
   }
 
+  .social-links .social-icon {
+    font-size: 2em;
+  }
+
+  #page-content .block-testimonials_block .testimonials .slick-arrow {
+    display: none !important;
+  }
+
   #blog-main .blog-post {
     height: 600px;
   }
 
-  .mobile-pagination .page-links-xs {
+  #blog-posts .mobile-pagination, .mobile-pagination .page-links-xs {
     display: block;
     padding: 20px;
   }
@@ -57,6 +65,10 @@
 
   #blog-main .blog-post .blog-left h3 {
     font-size: 1.5em;
+  }
+
+  .contact-container #contact-form {
+    padding: 24px;
   }
 
 }
@@ -104,7 +116,7 @@
 
   .hamburger {
     float: right;
-    padding: 10px;
+    padding: 0 10px 0 10px;
     color: #000000;
     cursor: pointer;
   }
@@ -145,8 +157,32 @@
     display: none;
   }
 
-  #page-content .block-richtext_block, #page-content .block-two_columns {
-    padding: 0 10% 0 10%;
+ .rich-text h3 {
+   font-size: 2em;
+ }
+
+ #page-content {
+   padding-top: 12px;
+ }
+
+  #page-content .block-richtext_block, #page-content .block-faq_block, #page-content .block-two_columns {
+    padding: 20px 10% 20px 10%;
+  }
+
+  .block-floatingcards_block .floating-card-row {
+    background: url('/media/images/arrow-down.png') no-repeat bottom center;
+  }
+
+  .block-floatingcards_block .floating-card-row .floating-card {
+    width: 100%;
+  }
+
+  .testimonials .slick-arrow {
+    font-size: 3em;
+  }
+
+  .testimonial figure blockquote {
+    padding: 80px 0 0 0;
   }
 
   #content #intro {
@@ -181,7 +217,11 @@
 
 @media screen and (max-width: 992px) {
 
-  .blog-index-page #mobile-blog-categories {
+  .floating-card-row .floating-card {
+    width: 75%;
+  }
+
+  #blog-posts #mobile-blog-categories {
     display: block;
     text-align: center;
     padding-bottom: 60px;
@@ -190,7 +230,7 @@
     z-index: 998;
   }
 
-  .blog-index-page .mobile-pagination {
+  #blog-posts .mobile-pagination {
     display: block;
   }
 
@@ -250,7 +290,7 @@
     display: none;
   }
 
-  #blog-content .block-richtext_block,   #blog-content  .block-two_columns, .block-imagetext_block .rich-text, .template-blogpage #disqus_thread {
+  #blog-content .block-richtext_block,   #blog-content .block-two_columns, #page-content .block-faq_block, .block-imagetext_block .rich-text, .template-blogpage #disqus_thread {
       padding: 60px 10% 40px 10%;
       position: relative;
       z-index: 997;
@@ -287,6 +327,11 @@
 }
 
 @media screen and (max-width: 1550px) {
+
+  #page-content .block-floatingcards_block {
+    padding: 0 10% 0 10%;
+  }
+
   #blog-sidebar .page-links {
     display: none;
   }
@@ -314,7 +359,7 @@ body {
   width: 100%;
 }
 
-p, ul li, .text-center p {
+p, ul li, .d-block.text-center, .faq-question {
   font-family: 'Montserrat', sans-serif;
   font-size: 20px;
 }
@@ -748,6 +793,257 @@ li .fa-heart {
   background: #ffffff;
 }
 
+.block-cta_block {
+  background-color: #3d3d3d;
+  color: #ffffff;
+  padding: 24px 0 24px 0;
+}
+
+.block-cta_block h2 {
+  color: #ffffff;
+}
+
+.block-floatingcards_block {
+  padding: 0 20% 0 20%;
+}
+
+.floating-card-row {
+  width: 100%;
+}
+
+.floating-card-row-left {
+  background: url('/media/images/arrow-right-down.png') no-repeat bottom right;
+  background-size: contain;
+  background-position: 60%;
+}
+
+.floating-card-row-right {
+  background: url('/media/images/arrow-left-down.png') no-repeat bottom left;
+  background-size: contain;
+  background-position: 60%;
+}
+
+.floating-card-row:last-of-type {
+  background: url('/media/images/flow-success.gif') no-repeat left;
+  background-position: 25%;
+}
+
+.floating-card {
+  width: 50%;
+  padding: 24px;
+  margin: 20px 0 100px 0;
+  background: #ffffff;
+  box-shadow: 3px 3px 30px -5px #7a7a7a;
+}
+
+.float-card-left {
+  float: left;
+}
+
+.float-card-right {
+  float: right;
+}
+
+#faq-container {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 3px 3px 30px -5px #7a7a7a;
+}
+
+.tab {
+  width: 100%;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.tab input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.tab input:checked + .faq-question {
+  background: #d17580;
+}
+
+.tab input:checked + .faq-question::after {
+  transform: rotate(90deg);
+}
+
+.tab input:checked ~ .faq-answer {
+  max-height: 100vh;
+  padding: 1em;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  background: #3d3d3d;
+  cursor: pointer;
+}
+
+.faq-question:hover {
+  background: #d17580;
+  transition: ease 0.5s;
+}
+
+.faq-question::after {
+  content: "\276F";
+  width: 1em;
+  height: 1em;
+  text-align: center;
+  transition: all .35s;
+}
+
+.faq-answer {
+  max-height: 0;
+  padding: 0 1em;
+  color: #3d3d3d;
+  background: white;
+  transition: all .35s;
+}
+
+.faq-answer p {
+  margin: 0;
+  padding: 20px 10px 20px 10px;
+}
+
+.testimonial blockquote {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  color: #3d3d3d;
+  background: #ffffff;
+  position: relative;
+  border: none;
+  border-radius: 8px;
+  margin: 10px 10px 0;
+  padding: 80px 12% 0 12%;
+}
+
+.testimonial blockquote:before, .testimonial blockquote:after {
+  font-family: FontAwesome;
+  font-style: normal;
+	content: "\f10d";
+	position: absolute;
+	font-size: 120px;
+	padding: 10px;
+	line-height: 1;
+	color: #d17580;
+  opacity: 25%;
+}
+
+.testimonial blockquote:before {
+	top: 0;
+	left: 10px;
+}
+
+.testimonial blockquote:after {
+	content: "\f10e";
+	right: 10px;
+	bottom: -.5em;
+}
+
+.testimonial blockquote:focus, .testimonial figure:focus, .block-testimonials_block:focus, .testimonials:focus, .slick-track:focus, .slick-slide:focus {
+	outline: none;
+}
+
+.testimonial figure, .testimonial figcaption {
+  margin: 0 10% 0 10%;
+}
+
+.testimonial figcaption p {
+  text-align: center;
+  font-size: 15px;
+}
+
+.slick-arrow {
+  cursor: pointer;
+  color: #d17580;
+  z-index: 1;
+}
+
+.slick-prev {
+  position: absolute;
+  left: 5%;
+  top: 50%;
+}
+
+.slick-next {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+}
+
+.slick-dotted.slick-slider {
+    margin-bottom: 30px;
+}
+
+.slick-dots {
+    position: absolute;
+    bottom: -25px;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+}
+
+.slick-dots li {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.slick-dots li button {
+    font-size: 0;
+    line-height: 0;
+    display: block;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    cursor: pointer;
+    color: transparent;
+    border: 0;
+    outline: none;
+    background: transparent;
+}
+
+.slick-dots li button:hover, .slick-dots li button:focus {
+    outline: none;
+}
+.slick-dots li button:hover:before, .slick-dots li button:focus:before {
+    opacity: 1;
+}
+
+.slick-dots li button:before
+{
+    font-family: 'slick';
+    font-size: 30px;
+    line-height: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    content: '•';
+    text-align: center;
+    opacity: .25;
+    color: black;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.slick-dots li.slick-active button:before
+{
+    opacity: .75;
+    color: black;
+}
+
 #blog-posts {
   background: #3d3d3d;
   padding: 24px 0 24px 0;
@@ -833,7 +1129,7 @@ li .fa-heart {
   left: 0px;
 }
 
-#blog-sidebar-content a:after {
+#blog-sidebar-content a:after, .cta_button:after {
   content: "";
   display: block;
   margin: auto;
@@ -843,7 +1139,7 @@ li .fa-heart {
   transition: width .6s ease, background-color .5s ease;
 }
 
-#blog-sidebar-content a:hover:after {
+#blog-sidebar-content a:hover:after, .cta_button:hover:after {
   width: 60%;
   background: #7C7C7C;
 }
@@ -930,7 +1226,7 @@ li .fa-heart {
 
 .ghost-button-white {
   color: #ffffff;
-  font-size: 1.8em;
+  font-size: 1.2em;
   border: 2px solid #ffffff;
 }
 
@@ -1014,7 +1310,7 @@ li .fa-heart {
   list-style: none;
 }
 
-.block-richtext_block, .block-two_columns, #disqus_thread {
+.block-richtext_block, .block-faq_block, .block-two_columns, #disqus_thread {
     padding: 60px 20% 40px 20%;
     position: relative;
     z-index: 997;
@@ -1044,7 +1340,7 @@ li .fa-heart {
   height: auto;
 }
 
-.rich-text {
+.rich-text p, .rich-text h2, .rich-text h3, .rich-text h4 {
   overflow-wrap: break-word;
 }
 

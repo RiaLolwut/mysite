@@ -55,3 +55,17 @@ $(window).scroll(function() {
   });
 
 });
+
+$(document).ready(function(){
+  $('.testimonials').slick({
+    dots: true,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    speed: 800,
+    slidesToShow: 1,
+    adaptiveHeight: true,
+    prevArrow: '<i class="fa fa-chevron-circle-left fa-5x slick-prev pulse-this" aria-hidden="true"></i>',
+    nextArrow: '<i class="fa fa-chevron-circle-right fa-5x slick-next pulse-this" aria-hidden="true"></i>',
+  });
+});

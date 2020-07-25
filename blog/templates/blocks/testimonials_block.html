@@ -1,0 +1,13 @@
+{% load wagtailcore_tags %}
+<div class="testimonials">
+  {% for item in self %}
+  <div class="testimonial">
+  <figure>
+    <blockquote>
+        {{ item.value.testimonial }}
+    </blockquote>
+  </figure>
+  <figcaption class="blockquote-attrib">{{ item.value.client }}</figcaption>
+  </div>
+  {% endfor %}
+</div>

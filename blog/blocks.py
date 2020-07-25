@@ -17,7 +17,7 @@ class RichTextBlock(blocks.RichTextBlock):
 
 class TwoColumnBlock(blocks.StructBlock):
 
-    left_column = RichTextBlock(icon='arrow-right', label='Left column content')
+    left_column = RichTextBlock(icon='arrow-left', label='Left column content')
     right_column = RichTextBlock(icon='arrow-right', label='Right column content')
 
     class Meta:
@@ -27,7 +27,7 @@ class TwoColumnBlock(blocks.StructBlock):
 
 class ImageTextBlock(blocks.StructBlock):
 
-    left_column = ImageChooserBlock(icon='arrow-right', label='Left column image')
+    left_column = ImageChooserBlock(icon='arrow-left', label='Left column image')
     right_column = RichTextBlock(icon='arrow-right', label='Right column text')
 
     class Meta:
@@ -59,3 +59,48 @@ class FullWidthImageBlock(ImageChooserBlock):
         template = "blocks/fullwidthimage_block.html"
         icon = "image"
         label = "Full-Width Image"
+
+class CTABlock(blocks.StructBlock):
+
+    cta_text = RichTextBlock(icon='edit', label='CTA block copy')
+    cta_button = blocks.TextBlock(icon='pick', label='CTA button text')
+    cta_link = blocks.PageChooserBlock(icon='site', label='Link')
+
+    class Meta:
+        template = 'blocks/cta_block.html'
+        icon = 'pick'
+        label = 'Full-Width CTA'
+
+class FloatingCardsBlock(blocks.StreamBlock):
+
+    float_card_left = RichTextBlock(icon='arrow-left', label='Float card left')
+    float_card_right = RichTextBlock(icon='arrow-right', label='Float card right')
+
+    class Meta:
+        template = "blocks/floatingcards_block.html"
+        icon = "list-ul"
+        label = "Floating Cards"
+
+class FAQBlock(blocks.StreamBlock):
+
+    faq = blocks.StructBlock([
+        ('question', blocks.TextBlock(icon='help', label='FAQ Question')),
+        ('answer', RichTextBlock(icon='edit', label='FAQ Answer')),
+    ], icon='help')
+
+    class Meta:
+        template = "blocks/faq_block.html"
+        icon = "help"
+        label = "FAQ Dropdown"
+
+class TestimonialsBlock(blocks.StreamBlock):
+
+    testimonial = blocks.StructBlock([
+        ('testimonial', blocks.TextBlock(icon='help', label='Testimonial')),
+        ('client', RichTextBlock(icon='edit', label='Client')),
+    ], icon='help')
+
+    class Meta:
+        template = "blocks/testimonials_block.html"
+        icon = "openquote"
+        label = "Testimonials Slider"

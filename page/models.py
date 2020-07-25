@@ -30,6 +30,10 @@ class DefaultPage(Page):
             ('quote_block', blocks.QuoteBlock()),
             ('gallery_block', blocks.GalleryBlock()),
             ('fullwidthimage_block', blocks.FullWidthImageBlock()),
+            ('cta_block', blocks.CTABlock()),
+            ('floatingcards_block', blocks.FloatingCardsBlock()),
+            ('faq_block', blocks.FAQBlock()),
+            ('testimonials_block', blocks.TestimonialsBlock()),
         ],
         null=True,
         blank=True
