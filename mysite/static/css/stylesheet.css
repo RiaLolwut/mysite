@@ -171,7 +171,7 @@
    padding-top: 12px;
  }
 
-  #page-content .block-richtext_block, #page-content .block-faq_block, #page-content .block-two_columns {
+  #page-content .block-richtext_block, #page-content .block-faq_block, #page-content .block-two_columns, .template-404 #page-content {
     padding: 20px 10% 20px 10%;
   }
 
@@ -1480,4 +1480,9 @@ blockquote {
 
 #submit-button:focus {
   outline: 0;
+}
+
+.template-404 img {
+  display: block;
+  margin: auto;
 }

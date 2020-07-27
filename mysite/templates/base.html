@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="shortcut icon" href="/media/images/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/media/images/favicon.ico" type="image/x-icon">
-        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% with self.get_site.site_name as site_name %}{% if site_name %}- {{ site_name }}{% endif %}{% endwith %}{% endblock %}</title>
+        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}</title>
         <meta name="description" content="{{ self.search_description }}" />
         <meta property="og:site_name" content="Ria Parish" />
         <meta property="og:locale" content="en_NZ" />
