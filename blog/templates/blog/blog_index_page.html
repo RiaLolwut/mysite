@@ -18,7 +18,7 @@
     </div>
 </section>
 <section id="blog-posts" class="container-fluid">
-{% for first in blogposts|slice:":1" %}
+{% for first in all_posts|slice:":1" %}
 {% with first=first.specific %}
 {% image first.hero_image height-600 as thumbnail %}
   <div id="recent-blog" class="row-fluid clearfix">
@@ -55,6 +55,7 @@
         <div id="blog-sidebar-content">
           <h2>Categories</h2>
           <ul>
+            <li class="pulse-this"><a href="/blog/"><p>All</p></a></li>
             {% for category in categories.all %}
             <li class="pulse-this"><a href="/blog/category/{{ category.slug }}"><p>{{ category }}</p></a></li>
             {% endfor %}
@@ -83,7 +84,7 @@
         </div>
       </div>
       <div id="blog-main" class="col-md-8">
-        {% for post in blogposts|slice:"1:" %}
+        {% for post in blogposts %}
         {% with post=post.specific %}
         <div class="blog-post">
           <div class="blog-right col-md-6 col-md-push-6">

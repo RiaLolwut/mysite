@@ -14,6 +14,8 @@ from wagtail.contrib.forms.models import (
     AbstractFormField,
 )
 
+from wagtailcaptcha.models import WagtailCaptchaEmailForm
+
 # Create your models here.
 class FormField(AbstractFormField):
     page = ParentalKey(
@@ -22,7 +24,7 @@ class FormField(AbstractFormField):
         related_name='form_fields',
     )
 
-class ContactPage(AbstractEmailForm):
+class ContactPage(WagtailCaptchaEmailForm):
     hero_heading = models.CharField(max_length=100, blank=False, null=True)
     hero_image = models.ForeignKey(
         "wagtailimages.Image",

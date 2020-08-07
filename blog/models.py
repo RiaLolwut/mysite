@@ -56,7 +56,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
     def get_context(self, request):
         context = super().get_context(request)
         all_posts = self.get_children().live().order_by('-first_published_at')
-        pagination = Paginator(all_posts, 5)
+        pagination = Paginator(all_posts[1:], 5)
         page = request.GET.get("page")
 
 
@@ -68,6 +68,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
             blogposts = pagination.page(pagination.num_pages)
 
         context['categories'] = BlogCategory.objects.all()
+        context['all_posts'] = all_posts
         context['blogposts'] = blogposts
         context['pagination'] = pagination
         return context
@@ -96,7 +97,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
         self.seo_title = category.seo_title
         self.intro = category.intro
 
-        all_category_posts = BlogPage.objects.filter(categories__in=[category])
+        all_category_posts = BlogPage.objects.filter(categories__in=[category]).live().order_by('-first_published_at')
         pagination = Paginator(all_category_posts, 4)
         page = request.GET.get("page")
 
@@ -108,7 +109,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
             blogposts = pagination.page(pagination.num_pages)
 
         context["blogposts"] = blogposts
-        context['pagination'] = pagination
+        context["pagination"] = pagination
         return render(request, "blog/blog_index_page.html", context)
 
 class BlogPageTag(TaggedItemBase):
