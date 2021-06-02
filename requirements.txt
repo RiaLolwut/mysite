@@ -23,7 +23,7 @@ soupsieve==2.0.1
 sqlparse==0.3.1
 stevedore==2.0.1
 Unidecode==1.1.1
-urllib3==1.25.9
+urllib3==1.26.5
 virtualenv==20.0.26
 virtualenv-clone==0.5.4
 virtualenvwrapper==4.8.4
